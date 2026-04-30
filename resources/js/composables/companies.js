@@ -25,7 +25,7 @@ export default function useCompanies() {
         errors.value = ''
 
         try{
-            await axios.post('api/companies' , data)
+            await axios.post('/api/companies' , data)
             await router.push({name: 'companies.index'});
         }catch (e) {
             if(e.response.status === 422){
