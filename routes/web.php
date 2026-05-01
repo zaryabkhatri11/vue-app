@@ -11,10 +11,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/products', function () {
+    return view('products');
+})->name('products');
 
-Route::view('/{any}', 'dashboard')
-    ->middleware(['auth'])
-    ->where('any', '.*');
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,4 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::view('/{any}', 'dashboard')
+    ->middleware(['auth'])
+    ->where('any', '.*');
+
+

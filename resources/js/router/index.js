@@ -3,6 +3,10 @@ import {createRouter , createWebHistory} from 'vue-router'
 import CompaniesIndex from "@/components/companies/CompaniesIndex.vue"
 import CompaniesCreate from "@/components/companies/CompaniesCreate.vue";
 import CompaniesEdit from "@/components/companies/CompaniesEdit.vue";
+import ProductIndex from "@/components/products/ProductIndex.vue";
+import ProductCreate from "@/components/products/ProductCreate.vue";
+import ProductEdit from "@/components/products/ProductEdit.vue";
+
 
 const routes = [
     {
@@ -19,6 +23,22 @@ const routes = [
         path: '/companies/:id/edit',
         name: 'companies.edit',
         component: CompaniesEdit,
+        props: true,
+    },
+    {
+        path: '/products',
+        name: 'products.index',
+        component: ProductIndex,
+    },
+    {
+        path: '/products/create',
+        name: 'products.create',
+        component: ProductCreate,
+    },
+    {
+        path: '/products/:id/edit',
+        name: 'products.edit',
+        component: ProductEdit,
         props: true,
     }
 

@@ -79,5 +79,5 @@ const destroyCompany = async (id) => {
 }
 
 
-onMounted(getCompanies )
+onMounted(getCompanies)
 </script>
