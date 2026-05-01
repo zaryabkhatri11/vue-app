@@ -4,20 +4,20 @@ import {useRouter} from 'vue-router'
 
 
 export default function useCompanies() {
-    const company = ref([]);
+    const company = ref({});
     const companies = ref([]);
 
     const errors = ref([]);
     const router = useRouter();
 
     const getCompanies = async () => {
-        let response = await axios.get('api/companies');
+        let response = await axios.get('/api/companies');
         companies.value = response.data.data
     }
 
     const getCompany = async (id) => {
-        let response = await axios.get(`api/companies/${id}`);
-        companies.value = response.data.data
+        let response = await axios.get(`/api/companies/${id}`);
+        company.value = response.data.data
     }
 
     const storeCompany = async(data) => {
@@ -29,9 +29,7 @@ export default function useCompanies() {
             await router.push({name: 'companies.index'});
         }catch (e) {
             if(e.response.status === 422){
-                for(const key in e.response.data.errors) {
-                    errors.value = e.response.data.errors
-                }
+                errors.value = e.response.data.errors
             }
         }
     }
@@ -41,20 +39,18 @@ export default function useCompanies() {
 
         try{
 
-            await axios.post(`api/companies/${id}` , company.value)
+            await axios.put(`/api/companies/${id}` , company.value)
             await router.push({name: 'companies.index'})
 
         } catch (e) {
             if(e.response.status === 422) {
-                for(const key in e.response.data.errors) {
-                    errors.value = e.response.data.errors
-                }
+                errors.value = e.response.data.errors
             }
         }
     }
 
     const deleteCompany = async(id) => {
-        await axios.delete(`api/companies/${id}`);
+        await axios.delete(`/api/companies/${id}`);
     }
 
     return {

@@ -3,10 +3,6 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Companies') }}
         </h2>
-
-        <x-primary-button class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Companies') }}
-        </x-primary-button>
     </x-slot>
 
     <div class="py-12">
